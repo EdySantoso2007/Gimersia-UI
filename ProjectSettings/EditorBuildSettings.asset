@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene01.unity
     guid: 283aaef3db9dc1b4382cd4ec838874ef
+  - enabled: 1
+    path: Assets/Scenes/Scene02.unity
+    guid: a3f7c115ae9249f4b8f5cc41b9e2372b
   - enabled: 0
     path: Assets/Scenes/COBA COBA.unity
     guid: e8eb4df85ea25f04b9cfc59e4efc5e94

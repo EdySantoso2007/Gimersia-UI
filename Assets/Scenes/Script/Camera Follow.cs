@@ -1,27 +1,28 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollowBounce : MonoBehaviour
 {
-    public float followSpeed = 2.0f;
+    [Header("Target (Player)")]
     public Transform target;
 
-    void Start()
-    {
-        // Auto-assign the target if not set in the Inspector (expects the player to have tag "Player")
-        if (target == null)
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null) target = player.transform;
-        }
-    }
+    [Header("Camera Offset (Posisi di atas player)")]
+    public Vector3 offset = new Vector3(0, 0, -10f);
 
-    // Use LateUpdate so the camera follows after all movement/physics have been applied
+    [Header("Bounce Settings")]
+    [Tooltip("Semakin kecil nilai smoothTime, semakin cepat kamera mengikuti")]
+    public float smoothTime = 0.3f;
+
+    private Vector3 velocity = Vector3.zero;
+
     void LateUpdate()
     {
-        if (target == null) return;
+        if (target == null)
+            return;
 
-        // Preserve camera Z position and smoothly interpolate to the target XY
-        Vector3 targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+        // Posisi target + offset (kamera berada di atas player)
+        Vector3 targetPosition = target.position + offset;
+
+        // Gunakan SmoothDamp agar kamera bergerak lembut seperti bounce
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 }
