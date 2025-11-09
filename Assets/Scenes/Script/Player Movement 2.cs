@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -87,7 +87,7 @@ public class PlayerMovementScene02 : MonoBehaviour
             stamina += chargeRate * dt;
         }
 
-        // (No continuous drain while moving � we cost per press)
+        // (No continuous drain while moving — we cost per press)
         // Clamp stamina and update UI
         stamina = Mathf.Clamp(stamina, 0f, max_stamina);
         if (stamina_bar != null)
@@ -139,5 +139,21 @@ public class PlayerMovementScene02 : MonoBehaviour
     }
 
     // Trigger area to disable WAS input (keeps D active)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("DisableZone"))
+        {
+            disableWAS = true;
+            Debug.Log("W, A, S dinonaktifkan — hanya D yang aktif.");
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("DisableZone"))
+        {
+            disableWAS = false;
+            Debug.Log("W, A, S diaktifkan kembali.");
+        }
+    }
 }

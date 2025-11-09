@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8de14bb901645ee4e80f9cf099eede37
+guid: 34de9864704029c47b5296d08c00ce08
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6705710928330370678
-    second: tile map 1_0
+      213: -7640942988821648936
+    second: Batu_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tile map 1_0
+      name: Batu_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 22
+        y: 13
+        width: 15
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a81d966607780f2a0800000000000000
-      internalID: -6705710928330370678
+      spriteID: 8d9264ac5dae5f590800000000000000
+      internalID: -7640942988821648936
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tile map 1_0: -6705710928330370678
+      Batu_0: -7640942988821648936
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

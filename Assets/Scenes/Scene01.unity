@@ -5212,11 +5212,11 @@ Transform:
   m_GameObject: {fileID: 619394800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -33.32601, y: 1.9333274, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1887729109}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &622040819
 GameObject:
@@ -10095,7 +10095,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2144608218}
-  m_Father: {fileID: 1887729109}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14505,10 +14505,6 @@ Transform:
   - {fileID: 479332525}
   - {fileID: 2110181753}
   - {fileID: 1473110232}
-  - {fileID: 619394802}
-  - {fileID: 1954908539}
-  - {fileID: 1326576862}
-  - {fileID: 1894347853}
   - {fileID: 1085208377}
   - {fileID: 603673455}
   - {fileID: 171239050}
@@ -14739,11 +14735,11 @@ Transform:
   m_GameObject: {fileID: 1894347850}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -33.32601, y: 1.9333274, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1887729109}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1894863174
 GameObject:
@@ -15705,12 +15701,12 @@ Transform:
   m_GameObject: {fileID: 1954908537}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -33.32601, y: 1.9333274, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1461130508}
-  m_Father: {fileID: 1887729109}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1964892872
 GameObject:
@@ -17483,7 +17479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 87, y: 46}
+  m_AnchoredPosition: {x: 629, y: 245}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
@@ -17492,5 +17488,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1180669111}
   - {fileID: 519420032}
+  - {fileID: 619394802}
+  - {fileID: 1954908539}
+  - {fileID: 1326576862}
   - {fileID: 670906846}
   - {fileID: 1075752033}
+  - {fileID: 1894347853}

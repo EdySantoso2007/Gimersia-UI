@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: tile map 1_0
+  m_Name: Pohon beringin_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -6705710928330370678, guid: 8de14bb901645ee4e80f9cf099eede37, type: 3}
+  m_Sprite: {fileID: -7509002739222963825, guid: 962f983851af95e42bb0472e10dcd7cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
