@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 188, y: 181.41556}
+  m_AnchoredPosition: {x: 162, y: 174.41556}
   m_SizeDelta: {x: 56.2395, y: 41.5546}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &323028177
@@ -623,11 +623,14 @@ MonoBehaviour:
   speed: 5
   moved: 0
   movea: 0
+  movew: 0
   stamina_bar: {fileID: 323028177}
   stamina: 100
   max_stamina: 100
   runcost: 20
   chargeRate: 20
+  pressMoveTime: 0.15
+  staminaCostPerPress: 1
 --- !u!1 &1326576858
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 188, y: 181}
+  m_AnchoredPosition: {x: 162, y: 174}
   m_SizeDelta: {x: 56.2395, y: 41.5546}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1335615819
