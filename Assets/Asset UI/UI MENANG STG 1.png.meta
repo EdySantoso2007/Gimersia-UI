@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ff4f20f090efdb046b305c8f6a64e908
+guid: f412561d374e581469353dbb13d6217e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6416704506416456542
-    second: setting_0
+      213: 26796031910600653
+    second: UI MENANG STG 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: setting_0
+      name: UI MENANG STG 1_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 20
-        width: 63
-        height: 28
+        x: 2
+        y: 85
+        width: 288
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ac1662af3943f6a0800000000000000
-      internalID: -6416704506416456542
+      spriteID: dcfdb6b59d23f5000800000000000000
+      internalID: 26796031910600653
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      setting_0: -6416704506416456542
+      UI MENANG STG 1_0: 26796031910600653
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
