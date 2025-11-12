@@ -1,27 +1,39 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraStepFollow : MonoBehaviour
 {
-    public float followSpeed = 2.0f;
-    public Transform target;
+    public Transform player;           // referensi ke player
+    public float stepHeight = 5f;      // jarak vertikal antar "lantai" (sesuaikan)
+    public float smoothSpeed = 3f;     // kecepatan transisi kamera (0 = instan)
+    private float targetY;             // posisi Y kamera yang diinginkan
 
     void Start()
     {
-        // Auto-assign the target if not set in the Inspector (expects the player to have tag "Player")
-        if (target == null)
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null) target = player.transform;
-        }
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        // set posisi awal kamera
+        targetY = transform.position.y;
     }
 
-    // Use LateUpdate so the camera follows after all movement/physics have been applied
-    void LateUpdate()
+    void Update()
     {
-        if (target == null) return;
+        if (player == null) return;
 
-        // Preserve camera Z position and smoothly interpolate to the target XY
-        Vector3 targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+        // jika player melewati batas atas kamera (naik cukup jauh)
+        if (player.position.y > targetY + stepHeight / 2f)
+        {
+            targetY += stepHeight;
+        }
+        // jika player turun cukup jauh (misal jatuh ke area bawah)
+        else if (player.position.y < targetY - stepHeight / 2f)
+        {
+            targetY -= stepHeight;
+        }
+
+        // transisi halus ke posisi target
+       Vector3 targetPos = new Vector3(transform.position.x, targetY + 1f, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * smoothSpeed);
     }
 }
+

@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class Player_Movement : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
+
     private Rigidbody2D rb;
     public float speed;
     public float moved;   // 1 when D is pressed
@@ -47,6 +49,27 @@ public class Player_Movement : MonoBehaviour
         stamina = Mathf.Clamp(stamina, 0f, max_stamina);
         if (stamina_bar != null)
             stamina_bar.fillAmount = Mathf.Clamp01(stamina / max_stamina);
+
+        // Update animator based on horizontal direction.
+        // Set the correct walking flag for the direction, and clear both when idle.
+        if (animator != null)
+        {
+            if (inputX > 0f) // moving right (D)
+            {
+                animator.SetBool("isWalkR", true);
+                animator.SetBool("isWalkL", false);
+            }
+            else if (inputX < 0f) // moving left (A)
+            {
+                animator.SetBool("isWalkR", false);
+                animator.SetBool("isWalkL", true);
+            }
+            else // idle
+            {
+                animator.SetBool("isWalkR", false);
+                animator.SetBool("isWalkL", false);
+            }
+        }
     }
 
     void FixedUpdate()

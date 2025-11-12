@@ -15,10 +15,9 @@ public class PlayerMovementScene02 : MonoBehaviour
     public Image stamina_bar;
     public float stamina = 5f;
     public float max_stamina = 5f;
-    public float runcost = 1f; // unused in press-based movement but kept
+    public float runcost = 1f;
     public float chargeRate = 20f; // Stamina per second gained while holding F (only charges when not moving)
 
-    // press-based movement settings
     [Header("Press-to-move settings")]
     [Tooltip("How long a single key press produces movement (seconds). To keep moving, player must press repeatedly).")]
     public float pressMoveTime = 0.15f;
@@ -33,62 +32,68 @@ public class PlayerMovementScene02 : MonoBehaviour
     private float leftTimer;
     private float upTimer;
 
+    // === Tambahan untuk sistem siang–malam (efek vampir) ===
+    [Header("Efek Vampir (Siang–Malam)")]
+    public float nightSpeedMultiplier = 1.5f;     // kecepatan ekstra saat malam
+    public float dayStaminaDrainRate = 1f;        // kecepatan stamina turun saat siang
+    private DayNightCycle dayNightCycle;          // referensi ke sistem siang–malam
+    private float baseSpeed;                      // menyimpan kecepatan asli agar tidak berubah permanen
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         if (max_stamina <= 0f) max_stamina = 1f;
         stamina = Mathf.Clamp(stamina, 0f, max_stamina);
+
+        baseSpeed = speed;
+        dayNightCycle = FindObjectOfType<DayNightCycle>(); // cari otomatis DayNightCycle di scene
     }
 
     void Update()
     {
         float dt = Time.deltaTime;
 
-        // Input: only start movement on GetKeyDown (single press).
-        // If zone disables WAS, those inputs are ignored.
-        if (!disableWAS)
+        // === Efek vampir berdasarkan waktu ===
+        if (dayNightCycle != null)
         {
-            if (Input.GetKeyDown(KeyCode.D))
+            if (dayNightCycle.isNight)
             {
-                TryConsumeAndStartRight();
+                // 🌙 malam hari → vampir makin cepat
+                speed = baseSpeed * nightSpeedMultiplier;
             }
-
-            if (Input.GetKeyDown(KeyCode.A))
+            else
             {
-                TryConsumeAndStartLeft();
-            }
-
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                TryConsumeAndStartUp();
+                // ☀️ siang hari → stamina berkurang
+                speed = baseSpeed;
+                stamina -= dayStaminaDrainRate * dt;
             }
         }
 
-        // Decrease timers
+        // Input per tekan (bukan hold)
+        if (!disableWAS)
+        {
+            if (Input.GetKeyDown(KeyCode.D)) TryConsumeAndStartRight();
+            if (Input.GetKeyDown(KeyCode.A)) TryConsumeAndStartLeft();
+            if (Input.GetKeyDown(KeyCode.W)) TryConsumeAndStartUp();
+        }
+
+        // Kurangi waktu aktif tiap arah
         rightTimer = Mathf.Max(0f, rightTimer - dt);
         leftTimer = Mathf.Max(0f, leftTimer - dt);
         upTimer = Mathf.Max(0f, upTimer - dt);
 
-        // Update the public flags (for compatibility)
         moved = rightTimer > 0f ? 1f : 0f;
         movea = leftTimer > 0f ? -1f : 0f;
         movew = upTimer > 0f ? 1f : 0f;
 
-        float inputX = moved + movea;
-        float inputY = movew;
         bool isCharging = Input.GetKey(KeyCode.F);
-
-        // Consider "moving" if any timer is active
         bool isMoving = rightTimer > 0f || leftTimer > 0f || upTimer > 0f;
 
-        // Hold F to charge only when not moving
+        // isi stamina saat diam dan menekan F
         if (isCharging && !isMoving)
-        {
             stamina += chargeRate * dt;
-        }
 
-        // (No continuous drain while moving — we cost per press)
-        // Clamp stamina and update UI
+        // batas stamina
         stamina = Mathf.Clamp(stamina, 0f, max_stamina);
         if (stamina_bar != null)
             stamina_bar.fillAmount = Mathf.Clamp01(stamina / max_stamina);
@@ -101,11 +106,7 @@ public class PlayerMovementScene02 : MonoBehaviour
         float inputX = moved + movea;
         float inputY = movew;
 
-        // movement only active during the press window; no continuous holding
-        float effectiveX = inputX;
-        float effectiveY = inputY;
-
-        rb.linearVelocity = new Vector2(effectiveX * speed, effectiveY * speed);
+        rb.linearVelocity = new Vector2(inputX * speed, inputY * speed);
     }
 
     private void TryConsumeAndStartRight()
@@ -114,7 +115,6 @@ public class PlayerMovementScene02 : MonoBehaviour
         {
             stamina -= staminaCostPerPress;
             rightTimer = pressMoveTime;
-            // cancel opposite if needed
             leftTimer = 0f;
         }
     }
@@ -138,7 +138,17 @@ public class PlayerMovementScene02 : MonoBehaviour
         }
     }
 
-    // Trigger area to disable WAS input (keeps D active)
+    // === Sistem checkpoint & refill stamina ===
+    public void RefillStamina()
+    {
+        stamina = max_stamina;
+        if (stamina_bar != null)
+            stamina_bar.fillAmount = Mathf.Clamp01(stamina / max_stamina);
+
+        Debug.Log("Stamina diisi penuh (dari checkpoint atau respawn)!");
+    }
+
+    // === Disable area W, A, S ===
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("DisableZone"))
